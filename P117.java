@@ -1,10 +1,7 @@
 package leetCode2022;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 public class P117{
 
@@ -17,23 +14,35 @@ public class P117{
 
     // put root left, right into stack
     Queue<Node> nodeQueue = new LinkedList<Node>();
-    if(root.left!=null){
-      nodeQueue.add(root.left);
-    }
-
-    if(root.right!=null){
-      nodeQueue.add(root.right);
-    }
+    nodeQueue.add(root);
 
     // iterate stack until empty
+    Node prev = null;
+    while(!nodeQueue.isEmpty()){
+      Node tmp = nodeQueue.poll();
+      if(tmp==null){    // if node = null, meaning the end of the same depth node
+        prev.next = null;
+        prev = null;
+      }else{
+        if(prev!=null){
+          prev.next = tmp;
+        }else{
+          nodeQueue.add(null);  // nodes with new depth begin
+        }
 
+        if(tmp.left!=null)
+        nodeQueue.add(tmp.left);
 
-    // for each node in stack, add it into another stack
+        if(tmp.right!=null)
+        nodeQueue.add(tmp.right);
 
-    return null;
+        prev = tmp;
+      }
+    }
+    return root;
   }
 
     public static void main(String[] args){
-        System.out.println("Sdfsdf");
+        System.out.println("117. Populating Next Right Pointers in Each Node II");
     }
 }
