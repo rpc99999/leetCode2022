@@ -1,5 +1,3 @@
-package leetCode2022.Two_Pointers;
-
 public class P977 {
   /*
    * 977. Squares of a Sorted Array

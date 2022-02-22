@@ -1,5 +1,3 @@
-package leetCode2022;
-
 class P704 {
 
   /*

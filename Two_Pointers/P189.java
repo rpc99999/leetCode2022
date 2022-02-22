@@ -1,5 +1,3 @@
-package leetCode2022.Two_Pointers;
-
 public class P189 {
   public void rotate(int[] nums, int k) {
     /*
