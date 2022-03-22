@@ -1,5 +1,3 @@
-import leetCode2022.TreeNode;
-
 public class P617 {
   /*
    * 617. Merge Two Binary Trees

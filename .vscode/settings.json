@@ -1,0 +1,11 @@
+{
+  "java.project.sourcePaths": [
+    "Two_Pointers",
+    "SlidingWindow",
+    "DynamicProg",
+    "DivideAndConquer",
+    "Binary Search",
+    "BFS_DFS",
+    "Array"
+  ]
+}

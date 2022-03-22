@@ -5,6 +5,8 @@ import java.util.Map;
 public class P740 {
   /*
   740. Delete and Earn
+      1 <= nums.length <= 2 * 10000
+      1 <= nums[i] <= 10000
    * You are given an integer array nums. You want to maximize the number of
    * points you get by performing the following operation any number of times:
    * 
@@ -40,19 +42,34 @@ public class P740 {
         return nums[0];
       } 
       
-      // 1. Sort the array 
-      Arrays.sort(nums);
-
-      // 2. DP Solution
-      int[] points = new int[nums.length];
+      int[] totalPoint = new int[10000+1];   // as '1 <= nums[i] <= 10000'
+      int[] earnedPoint = new int[10000+1];
+      int maxNum = 0;
       for(int i = 0 ; i < nums.length; i++){
-        if(i==0){
-          points[i] = nums[i];
-        }else{
-          
+          maxNum = Math.max(maxNum, nums[i]);
+          totalPoint[nums[i]] += nums[i];
+      }
+
+      // Use P198_213.java to solve this question
+      // For example 1 [3, 4, 2]
+      //num:       1 2 3 4 5
+      //sumPoint : 0 2 3 4 0
+      
+      //F(1) = 0
+      //F(2) = 2
+      //F(3) = F(1) + num[3] or F(2)
+      //F(4) = F(2) + num[4] or F(3)
+      for(int i = 1; i <=maxNum; i++){
+        if(i==1){
+          earnedPoint[i] = totalPoint[i];
+        }else if(i==2){
+          earnedPoint[i] = Math.max(totalPoint[i], totalPoint[i-1]);
+        }else {
+          earnedPoint[i] = Math.max(earnedPoint[i-1], earnedPoint[i-2] + totalPoint[i]);
         }
       }
 
+      return earnedPoint[maxNum];
   }
 
   public static void main(String[] args){
